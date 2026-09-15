@@ -1,0 +1,499 @@
+<title>Done Deal Painting & Floors</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700;800&display=swap">
+<style>
+  :root{
+    --navy:#16305E; --navy-deep:#0F2347; --yellow:#F2C200; --red:#B02A30;
+    --paper:#F7F4EE; --white:#FFFFFF; --ink:#161B26; --steel:#5B6474;
+    --line:#E4DFD4; --radius:10px;
+    --display:'Anton', 'Arial Narrow', sans-serif;
+    --body:'Barlow', 'Helvetica Neue', Arial, sans-serif;
+  }
+  *{box-sizing:border-box; margin:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--body); color:var(--ink); background:var(--paper);
+    font-size:17px; line-height:1.55;
+  }
+  img{max-width:100%; height:auto; display:block}
+  a{color:inherit}
+  .wrap{max-width:1120px; margin:0 auto; padding-inline:20px}
+  h1,h2,h3,.disp{font-family:var(--display); font-weight:400; letter-spacing:.01em; text-wrap:balance}
+  .eyebrow{
+    display:inline-block; font-weight:700; font-size:.78rem; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--red); margin-bottom:10px;
+  }
+  section{padding-block:72px}
+  .sec-title{font-size:clamp(1.9rem,4vw,2.7rem); text-transform:uppercase; color:var(--navy); margin-bottom:14px}
+  .sec-lead{max-width:62ch; color:var(--steel); font-size:1.05rem; margin-bottom:36px}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky; top:env(safe-area-inset-top, 0px); z-index:50;
+    background:var(--navy); color:var(--white);
+    border-bottom:3px solid var(--yellow);
+  }
+  .nav{display:flex; align-items:center; gap:22px; padding-block:12px}
+  .logo{font-family:var(--display); font-size:1.15rem; line-height:.95; text-transform:uppercase; color:var(--yellow); text-decoration:none; text-shadow:2px 2px 0 rgba(0,0,0,.45)}
+  .logo small{display:block; color:var(--white); font-size:.62em; letter-spacing:.08em; text-shadow:none; font-family:var(--body); font-weight:700}
+  .nav-links{display:flex; gap:20px; margin-left:auto; font-weight:600; font-size:.95rem}
+  .nav-links a{text-decoration:none; opacity:.92}
+  .nav-links a:hover{color:var(--yellow)}
+  .btn{
+    display:inline-block; background:var(--yellow); color:var(--ink); font-weight:800;
+    text-decoration:none; padding:12px 22px; border-radius:6px; border:none;
+    font-size:1rem; letter-spacing:.02em; cursor:pointer;
+  }
+  .btn:hover{filter:brightness(1.06)}
+  .btn:focus-visible, a:focus-visible{outline:3px solid var(--yellow); outline-offset:2px}
+  .btn.ghost{background:transparent; color:var(--white); border:2px solid rgba(255,255,255,.7)}
+  .btn.ghost:hover{border-color:var(--yellow); color:var(--yellow)}
+  .nav .btn{padding:9px 16px; font-size:.9rem}
+  .nav-phone{display:none}
+  @media(min-width:860px){
+    .nav-phone{display:inline-block; font-weight:700; text-decoration:none; color:var(--white)}
+    .nav-phone:hover{color:var(--yellow)}
+  }
+  @media(max-width:760px){ .nav-links{display:none} }
+
+  /* ---------- hero ---------- */
+  .hero{background:var(--navy); color:var(--white); position:relative; overflow:hidden; padding-block:0}
+  .hero .wrap{
+    display:grid; grid-template-columns:1.05fr .95fr; gap:48px; align-items:center;
+    padding-block:76px; position:relative; z-index:2;
+  }
+  .hero h1{font-size:clamp(2.4rem,5.5vw,4rem); line-height:1.04; text-transform:uppercase}
+  .hero h1 .y{color:var(--yellow)}
+  .hero p.sub{margin-top:18px; font-size:1.12rem; max-width:48ch; color:#D7DEEC}
+  .hero-ctas{display:flex; gap:14px; margin-top:28px; flex-wrap:wrap}
+  .chips{display:flex; gap:10px; margin-top:26px; flex-wrap:wrap}
+  .chip{
+    background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.22);
+    padding:7px 14px; border-radius:100px; font-size:.85rem; font-weight:600; color:#EDEFF5;
+  }
+  .chip b{color:var(--yellow)}
+  /* colorado motifs */
+  .peak{position:absolute; bottom:0; width:0; height:0; z-index:1; opacity:.55}
+  .peak.l{left:-40px; border-left:180px solid transparent; border-right:180px solid transparent; border-bottom:230px solid var(--navy-deep)}
+  .peak.r{right:-60px; border-left:220px solid transparent; border-right:220px solid transparent; border-bottom:280px solid var(--navy-deep)}
+  .sun{position:absolute; top:-130px; left:50%; transform:translateX(-50%); width:340px; height:340px; border-radius:50%; background:var(--yellow); opacity:.12; z-index:1}
+  .hero-photos{position:relative; z-index:2}
+  .hero-photos .main{width:100%; height:auto; aspect-ratio:4/3; object-fit:cover; border-radius:var(--radius); border:4px solid var(--white); box-shadow:0 24px 50px rgba(0,0,0,.4)}
+  .hero-photos .badge{
+    position:absolute; left:-18px; bottom:-20px; background:var(--yellow); color:var(--ink);
+    font-family:var(--display); text-transform:uppercase; padding:12px 18px; border-radius:8px;
+    font-size:1.05rem; box-shadow:0 10px 24px rgba(0,0,0,.35); rotate:-2deg;
+  }
+  .hero-photos .badge small{display:block; font-family:var(--body); font-weight:700; font-size:.68rem; letter-spacing:.06em}
+  @media(max-width:860px){
+    .hero .wrap{grid-template-columns:1fr; padding-block:56px; gap:40px}
+    .peak.l,.peak.r{display:none}
+  }
+
+  /* ---------- trust bar ---------- */
+  .trust{background:var(--navy-deep); color:#C9D3E6; padding-block:14px; font-size:.92rem}
+  .trust .wrap{display:flex; gap:10px 34px; flex-wrap:wrap; justify-content:center; font-weight:600}
+  .trust span b{color:var(--yellow)}
+
+  /* ---------- services ---------- */
+  .svc-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:24px}
+  .svc{
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    overflow:hidden; display:flex; flex-direction:column;
+  }
+  .svc img{height:230px; object-fit:cover; width:100%}
+  .svc .pad{padding:24px 26px 28px; display:flex; flex-direction:column; gap:10px; flex:1}
+  .svc h3{font-size:1.45rem; text-transform:uppercase; color:var(--navy)}
+  .svc p{color:var(--steel); font-size:.98rem}
+  .svc ul{list-style:none; padding:0; display:flex; flex-wrap:wrap; gap:8px; margin-top:4px}
+  .svc li{background:var(--paper); border:1px solid var(--line); border-radius:100px; padding:4px 12px; font-size:.82rem; font-weight:600; color:var(--navy)}
+  .svc .link{margin-top:auto; padding-top:12px; font-weight:700; color:var(--red); text-decoration:none; font-size:.95rem}
+  .svc .link:hover{text-decoration:underline}
+  .handy-strip{
+    margin-top:24px; background:var(--navy); color:var(--white); border-radius:var(--radius);
+    padding:26px 30px; display:flex; align-items:center; gap:24px; flex-wrap:wrap;
+  }
+  .handy-strip h3{font-size:1.3rem; text-transform:uppercase; color:var(--yellow)}
+  .handy-strip p{color:#D7DEEC; font-size:.97rem; max-width:60ch}
+  .handy-strip .btn{margin-left:auto}
+  @media(max-width:760px){ .svc-grid{grid-template-columns:1fr} .handy-strip .btn{margin-left:0} }
+
+  /* ---------- before / after ---------- */
+  .ba{background:var(--white)}
+  .ba-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:28px}
+  .ba-card{border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:var(--paper)}
+  .ba-pair{display:grid; grid-template-columns:1fr 1fr; gap:0; position:relative}
+  .ba-pair .cell{position:relative}
+  .ba-pair img{height:250px; width:100%; object-fit:cover}
+  .tag{
+    position:absolute; top:10px; left:10px; font-family:var(--body); font-weight:800;
+    font-size:.72rem; letter-spacing:.1em; padding:4px 10px; border-radius:4px; text-transform:uppercase;
+  }
+  .tag.before{background:var(--ink); color:var(--white); opacity:.88}
+  .tag.after{background:var(--yellow); color:var(--ink)}
+  .ba-card .cap{padding:16px 20px}
+  .ba-card .cap b{color:var(--navy)}
+  .ba-card .cap span{color:var(--steel); font-size:.92rem; display:block; margin-top:2px}
+  @media(max-width:860px){ .ba-grid{grid-template-columns:1fr} }
+  @media(max-width:560px){ .ba-pair img{height:180px} }
+
+  /* ---------- gallery ---------- */
+  .gal{display:grid; grid-template-columns:repeat(4,1fr); gap:14px}
+  .gal figure{position:relative; border-radius:8px; overflow:hidden}
+  .gal img{height:190px; width:100%; object-fit:cover; transition:transform .25s ease}
+  .gal figure:hover img{transform:scale(1.04)}
+  .gal figcaption{
+    position:absolute; inset:auto 0 0 0; background:linear-gradient(transparent, rgba(15,25,50,.85));
+    color:var(--white); font-size:.8rem; font-weight:600; padding:26px 12px 9px;
+  }
+  @media(max-width:860px){ .gal{grid-template-columns:repeat(2,1fr)} }
+
+  /* ---------- process ---------- */
+  .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:24px}
+  .step{background:var(--white); border:1px solid var(--line); border-radius:var(--radius); padding:26px}
+  .step .num{
+    font-family:var(--display); font-size:1.6rem; color:var(--ink); background:var(--yellow);
+    width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-bottom:14px;
+  }
+  .step h3{font-size:1.15rem; text-transform:uppercase; color:var(--navy); margin-bottom:6px}
+  .step p{color:var(--steel); font-size:.95rem}
+  @media(max-width:760px){ .steps{grid-template-columns:1fr} }
+
+  /* ---------- reviews ---------- */
+  .reviews{background:var(--navy); color:var(--white)}
+  .reviews .sec-title{color:var(--white)}
+  .rev-head{display:flex; align-items:center; gap:20px; flex-wrap:wrap; margin-bottom:34px}
+  .gbadge{
+    background:var(--white); color:var(--ink); border-radius:8px; padding:10px 18px;
+    display:flex; align-items:center; gap:10px; font-weight:700;
+  }
+  .gbadge .score{font-family:var(--display); font-size:1.5rem}
+  .stars{color:#F2A900; letter-spacing:2px}
+  .rev-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px}
+  .rev{background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.16); border-radius:var(--radius); padding:24px; display:flex; flex-direction:column; gap:12px}
+  .rev p{color:#E4E9F4; font-size:.97rem}
+  .rev .who{margin-top:auto; font-weight:700; color:var(--yellow); font-size:.9rem}
+  .rev .who small{display:block; color:#9FACC7; font-weight:500}
+  .sample-note{margin-top:18px; font-size:.8rem; color:#8DA0C5}
+  @media(max-width:860px){ .rev-grid{grid-template-columns:1fr} }
+
+  /* ---------- about ---------- */
+  .about .wrap{display:grid; grid-template-columns:.9fr 1.1fr; gap:52px; align-items:center}
+  .about img{border-radius:var(--radius); border:4px solid var(--white); box-shadow:0 18px 40px rgba(22,48,94,.18)}
+  .about h2{margin-bottom:14px}
+  .about p{margin-bottom:14px; max-width:58ch}
+  .about .creds{display:flex; gap:10px; flex-wrap:wrap; margin-top:8px}
+  .about .creds span{background:var(--white); border:1px solid var(--line); padding:6px 14px; border-radius:100px; font-size:.85rem; font-weight:700; color:var(--navy)}
+  @media(max-width:860px){ .about .wrap{grid-template-columns:1fr} }
+
+  /* ---------- area + form ---------- */
+  .estimate{background:var(--white)}
+  .est-grid{display:grid; grid-template-columns:1fr 1.1fr; gap:52px}
+  .area-chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:16px}
+  .area-chips span{background:var(--paper); border:1px solid var(--line); border-radius:100px; padding:6px 14px; font-size:.88rem; font-weight:600; color:var(--navy)}
+  form{display:grid; gap:14px}
+  .frow{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+  label{font-weight:700; font-size:.85rem; color:var(--navy); display:grid; gap:6px}
+  input,select,textarea{
+    font-family:var(--body); font-size:1rem; padding:12px 14px; border:1.5px solid var(--line);
+    border-radius:8px; background:var(--paper); color:var(--ink); width:100%;
+  }
+  input:focus,select:focus,textarea:focus{outline:3px solid rgba(242,194,0,.5); border-color:var(--yellow)}
+  .form-note{font-size:.82rem; color:var(--steel)}
+  @media(max-width:860px){ .est-grid{grid-template-columns:1fr} .frow{grid-template-columns:1fr} }
+
+  /* ---------- footer ---------- */
+  footer{background:var(--navy-deep); color:#B9C4DA; padding-block:46px; font-size:.92rem}
+  footer .wrap{display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:36px}
+  footer .logo{font-size:1.3rem}
+  footer h4{color:var(--white); text-transform:uppercase; font-size:.85rem; letter-spacing:.1em; margin-bottom:10px}
+  footer a{text-decoration:none}
+  footer a:hover{color:var(--yellow)}
+  footer ul{list-style:none; padding:0; display:grid; gap:6px}
+  .fine{border-top:1px solid rgba(255,255,255,.14); margin-top:36px; padding-top:18px; text-align:center; font-size:.8rem; color:#7E8CA6}
+  @media(max-width:760px){ footer .wrap{grid-template-columns:1fr} }
+  @media(prefers-reduced-motion:reduce){ *{transition:none !important} html{scroll-behavior:auto} }
+</style>
+
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top">Done Deal<small>Painting · Floors · Handyman</small></a>
+    <nav class="nav-links" aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#work">Our Work</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#about">About</a>
+    </nav>
+    <a class="nav-phone" href="tel:+17205550123">(720) 555-0123</a>
+    <a class="btn" href="#estimate">Free Estimate</a>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <div class="sun"></div>
+  <div class="peak l"></div><div class="peak r"></div>
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" style="color:var(--yellow)">Denver, Colorado · Veteran-Owned</span>
+      <h1>Fresh paint.<br>New floors.<br><span class="y">Done deal.</span></h1>
+      <p class="sub">Interior painting and flooring installation for Denver homes — done by Diego, a former Marine who shows up on time, keeps a clean job site, and finishes what he starts.</p>
+      <div class="hero-ctas">
+        <a class="btn" href="#estimate">Get a Free Estimate</a>
+        <a class="btn ghost" href="#work">See Before &amp; After</a>
+      </div>
+      <div class="chips">
+        <span class="chip"><b>★ 5.0</b> on Google</span>
+        <span class="chip"><b>USMC</b> Veteran-Owned</span>
+        <span class="chip">Fully Insured</span>
+        <span class="chip">Free Estimates</span>
+      </div>
+    </div>
+    <div class="hero-photos">
+      <img class="main" src="hero.jpg" alt="Bright freshly painted room with bay window and new wide-plank flooring installed by Done Deal" width="1600" height="1067">
+      <div class="badge">Real Denver jobs<small>Painted &amp; floored by Diego</small></div>
+    </div>
+  </div>
+</div>
+
+<div class="trust">
+  <div class="wrap">
+    <span><b>Interior painting</b> — walls, ceilings, trim &amp; cabinets</span>
+    <span><b>Flooring</b> — LVP, laminate &amp; baseboards</span>
+    <span><b>Punch lists</b> — the small stuff, still handled</span>
+  </div>
+</div>
+
+<section id="services">
+  <div class="wrap">
+    <span class="eyebrow">What we do</span>
+    <h2 class="sec-title">Two trades, done right</h2>
+    <p class="sec-lead">Diego focuses on the two jobs that transform a home fastest — a clean coat of paint and a new floor — and still handles the to-do list while he's there.</p>
+    <div class="svc-grid">
+      <div class="svc">
+        <img src="cabinets.jpg" alt="Kitchen cabinets painted deep blue by Done Deal" loading="lazy">
+        <div class="pad">
+          <h3>Interior Painting</h3>
+          <p>Walls, ceilings, trim, doors, and cabinet repaints — with real prep behind every coat: patching, texture matching, caulk, and clean lines. No drips, no shortcuts, no mystery crew.</p>
+          <ul><li>Walls &amp; ceilings</li><li>Cabinets</li><li>Trim &amp; doors</li><li>Drywall repair &amp; texture</li></ul>
+          <a class="link" href="#estimate">Get a painting estimate →</a>
+        </div>
+      </div>
+      <div class="svc">
+        <img src="stairs-after.jpg" alt="New luxury vinyl plank flooring on staircase and main floor" loading="lazy">
+        <div class="pad">
+          <h3>Flooring Installation</h3>
+          <p>Luxury vinyl plank and laminate installed flat, tight, and finished with baseboards that look like they were always there. Old carpet hauled out, subfloor prepped, done in days — not weeks.</p>
+          <ul><li>Luxury vinyl plank</li><li>Laminate</li><li>Carpet removal</li><li>Baseboards &amp; transitions</li></ul>
+          <a class="link" href="#estimate">Get a flooring estimate →</a>
+        </div>
+      </div>
+    </div>
+    <div class="handy-strip">
+      <div>
+        <h3>…and the punch list, too</h3>
+        <p>Already got Diego in the house? Hand him the to-do list — TV mounting, ceiling fans, door repairs, caulking, garbage disposals. One trip, several checkmarks.</p>
+      </div>
+      <a class="btn" href="#estimate">Add it to the job</a>
+    </div>
+  </div>
+</section>
+
+<section class="ba" id="work">
+  <div class="wrap">
+    <span class="eyebrow">Proof, not promises</span>
+    <h2 class="sec-title">Before &amp; After</h2>
+    <p class="sec-lead">Every photo below is a real Denver-area job — same rooms, same light, new paint and floors. This is what "done deal" looks like.</p>
+    <div class="ba-grid">
+      <div class="ba-card">
+        <div class="ba-pair">
+          <div class="cell"><span class="tag before">Before</span><img src="stairs-before.jpg" alt="Worn stained carpet on staircase before renovation" loading="lazy"></div>
+          <div class="cell"><span class="tag after">After</span><img src="stairs-after.jpg" alt="Staircase and main level after luxury vinyl plank installation and fresh paint" loading="lazy"></div>
+        </div>
+        <div class="cap"><b>Littleton — whole main level</b><span>20-year-old carpet out, LVP + fresh paint throughout, listing-ready.</span></div>
+      </div>
+      <div class="ba-card">
+        <div class="ba-pair">
+          <div class="cell"><span class="tag before">Before</span><img src="bay-before.jpg" alt="Dark room with dirty carpet before repaint and flooring" loading="lazy"></div>
+          <div class="cell"><span class="tag after">After</span><img src="bay-after.jpg" alt="Bright repainted room with bay window and new plank flooring" loading="lazy"></div>
+        </div>
+        <div class="cap"><b>Littleton — living room</b><span>Full repaint in a clean white, new LVP under the bay window.</span></div>
+      </div>
+      <div class="ba-card">
+        <div class="ba-pair">
+          <div class="cell"><span class="tag before">Before</span><img src="bedroom-before.jpg" alt="Bedroom with dark brown walls and old carpet before renovation" loading="lazy"></div>
+          <div class="cell"><span class="tag after">After</span><img src="bedroom-after.jpg" alt="Bedroom after repaint in light neutral with new vinyl plank floor" loading="lazy"></div>
+        </div>
+        <div class="cap"><b>Denver — primary bedroom</b><span>Dark brown to light and airy; carpet swapped for wide-plank LVP.</span></div>
+      </div>
+      <div class="ba-card">
+        <div class="ba-pair">
+          <div class="cell"><span class="tag before">Before</span><img src="laundry-before.jpg" alt="Worn laundry area before renovation" loading="lazy"></div>
+          <div class="cell"><span class="tag after">After</span><img src="laundry-after.jpg" alt="Refreshed laundry area with new paint and flooring" loading="lazy"></div>
+        </div>
+        <div class="cap"><b>Littleton — laundry</b><span>Even the hardworking corners get the full treatment.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="eyebrow">Recent work</span>
+    <h2 class="sec-title">From the job site</h2>
+    <div class="gal">
+      <figure><img src="kitchen-after.jpg" alt="Kitchen after repaint with new flooring" loading="lazy"><figcaption>Kitchen refresh, Littleton</figcaption></figure>
+      <figure><img src="fireplace-after.jpg" alt="Living room with fireplace after paint and floors" loading="lazy"><figcaption>Living room, paint + LVP</figcaption></figure>
+      <figure><img src="door.jpg" alt="Front door painted orange" loading="lazy"><figcaption>Front door, color pop</figcaption></figure>
+      <figure><img src="bath-after.jpg" alt="Bathroom vanity after renovation" loading="lazy"><figcaption>Bath refresh</figcaption></figure>
+      <figure><img src="living-after-wide.jpg" alt="Open living area after full repaint and flooring" loading="lazy"><figcaption>Open plan, Denver condo</figcaption></figure>
+      <figure><img src="hallway-after.jpg" alt="Hallway with new plank flooring" loading="lazy"><figcaption>Hallway LVP</figcaption></figure>
+      <figure><img src="bedroom2-after.jpg" alt="Bedroom with new flooring and repaint" loading="lazy"><figcaption>Guest bedroom</figcaption></figure>
+      <figure><img src="decatur-floor.jpg" alt="Wide-plank wood-look flooring installed in a dining room" loading="lazy"><figcaption>Wide-plank install, Decatur St</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <span class="eyebrow">How it works</span>
+    <h2 class="sec-title">Estimate to done in three steps</h2>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><h3>Tell Diego the job</h3><p>Call, text, or use the form. Send a photo of the room and rough square footage if you have it — you'll hear back the same day.</p></div>
+      <div class="step"><div class="num">2</div><h3>Straight quote</h3><p>A free walk-through and a plain-language quote — what it costs, what it includes, and when it can start. No upsells.</p></div>
+      <div class="step"><div class="num">3</div><h3>Done deal</h3><p>Diego does the work himself — on time, clean job site, and he doesn't call it finished until you would.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <span class="eyebrow" style="color:var(--yellow)">Neighbors talking</span>
+    <h2 class="sec-title">5.0 stars and keeping it there</h2>
+    <div class="rev-head">
+      <div class="gbadge"><span class="score">5.0</span><span><span class="stars">★★★★★</span><br>Google Reviews</span></div>
+      <p style="color:#C9D3E6; max-width:44ch">Every review comes from a real completed job. Diego would rather earn five stars slowly than buy them fast.</p>
+    </div>
+    <div class="rev-grid">
+      <div class="rev">
+        <span class="stars">★★★★★</span>
+        <p>"Diego repainted our whole main floor and laid new LVP in a week. Showed up when he said, cleaned up every night, and the lines on the ceiling are perfect."</p>
+        <span class="who">Sarah M.<small>Whole main floor · Denver</small></span>
+      </div>
+      <div class="rev">
+        <span class="stars">★★★★★</span>
+        <p>"We hired him to paint one bedroom and ended up having him do the floors too. Best decision — the room looks brand new and the quote didn't move a dollar."</p>
+        <span class="who">James &amp; Kate R.<small>Bedroom repaint + flooring · Aurora</small></span>
+      </div>
+      <div class="rev">
+        <span class="stars">★★★★★</span>
+        <p>"Getting our rental listing-ready felt impossible until Diego took it over. Carpet out, floors in, fresh paint everywhere — our realtor asked for his number."</p>
+        <span class="who">Miguel T.<small>Rental turnover · Littleton</small></span>
+      </div>
+    </div>
+    <p class="sample-note">Sample layout — live Google reviews will be embedded here at launch.</p>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <img src="diego-stilts.jpg" alt="Diego Quintana on drywall stilts finishing a ceiling">
+    <div>
+      <span class="eyebrow">Hi neighbor</span>
+      <h2 class="sec-title">Meet Diego Quintana</h2>
+      <p>Diego is a former USMC Infantry Marine who brought two things home from the service: discipline and a low tolerance for jobs left half-done. Painting and flooring became the trade — a fresh coat and a new floor change how a house feels faster than anything else you can do to it.</p>
+      <p>He's not a franchise and doesn't send a rotating crew. The person who quotes your job is the person on the stilts finishing your ceiling. If something's not right, he comes back and makes it right — that's the whole business model.</p>
+      <div class="creds">
+        <span>Former USMC Infantry</span><span>Locally owned</span><span>Fully insured</span><span>Denver metro</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="estimate" id="estimate">
+  <div class="wrap est-grid">
+    <div>
+      <span class="eyebrow">Free estimate</span>
+      <h2 class="sec-title">Let's get it done</h2>
+      <p style="color:var(--steel); max-width:50ch">Tell Diego about the room — he'll get back to you the same day with next steps and a time for a free walk-through.</p>
+      <p style="margin-top:18px; font-weight:700; color:var(--navy)">Prefer to talk?<br>
+        <a href="tel:+17205550123" style="font-family:var(--display); font-size:1.6rem; text-decoration:none; color:var(--red)">(720) 555-0123</a><br>
+        <span style="font-weight:500; color:var(--steel); font-size:.9rem">Call or text · donedealhandyman@outlook.com</span>
+      </p>
+      <div>
+        <p style="margin-top:22px; font-weight:700; color:var(--navy)">Serving the Denver metro:</p>
+        <div class="area-chips">
+          <span>Denver</span><span>Aurora</span><span>Lakewood</span><span>Littleton</span><span>Englewood</span><span>Centennial</span><span>Wheat Ridge</span><span>Arvada</span>
+        </div>
+      </div>
+    </div>
+    <form onsubmit="event.preventDefault(); this.hidden=true; document.getElementById('thanks').hidden=false;">
+      <div class="frow">
+        <label>Name <input id="f-name" name="name" autocomplete="name" required></label>
+        <label>Phone or email <input id="f-contact" name="contact" autocomplete="tel" required></label>
+      </div>
+      <div class="frow">
+        <label>What's the job?
+          <select id="f-service" name="service">
+            <option>Interior painting</option>
+            <option>Cabinet painting</option>
+            <option>Flooring installation</option>
+            <option>Paint + flooring</option>
+            <option>Handyman punch list</option>
+          </select>
+        </label>
+        <label>Rooms or square footage <input id="f-size" name="size" placeholder="e.g. 2 bedrooms, ~600 sq ft"></label>
+      </div>
+      <label>Tell Diego about it <textarea id="f-msg" name="message" rows="4" placeholder="What's the room like now, and what do you want it to be?"></textarea></label>
+      <button class="btn" type="submit" style="justify-self:start">Request Free Estimate</button>
+      <p class="form-note">Mockup form — will connect to email/text notifications at launch.</p>
+    </form>
+    <p id="thanks" hidden style="font-weight:700; color:var(--navy); font-size:1.2rem">Thanks! Diego will get back to you the same day. <span style="color:var(--red)">(Demo only — no message was sent.)</span></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <a class="logo" href="#top">Done Deal<small>Painting · Floors · Handyman</small></a>
+      <p style="margin-top:12px; max-width:34ch">Veteran-owned painting and flooring for the Denver metro. Fresh coat, new floor, done deal.</p>
+    </div>
+    <div>
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Interior painting</a></li>
+        <li><a href="#services">Cabinet painting</a></li>
+        <li><a href="#services">LVP &amp; laminate flooring</a></li>
+        <li><a href="#services">Handyman punch lists</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="tel:+17205550123">(720) 555-0123</a></li>
+        <li><a href="mailto:donedealhandyman@outlook.com">donedealhandyman@outlook.com</a></li>
+        <li>Denver, CO · Mon–Fri 8–5</li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap fine">© 2026 Done Deal · Diego Quintana · Denver, CO — Draft mockup for review; phone number and reviews are placeholders.</div>
+</footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HousePainter",
+  "name": "Done Deal Painting & Floors",
+  "url": "https://www.donedealhandyman.com",
+  "email": "donedealhandyman@outlook.com",
+  "telephone": "+1-720-555-0123",
+  "address": {"@type": "PostalAddress", "addressLocality": "Denver", "addressRegion": "CO"},
+  "areaServed": ["Denver CO", "Aurora CO", "Lakewood CO", "Littleton CO", "Englewood CO", "Centennial CO", "Wheat Ridge CO", "Arvada CO"],
+  "founder": {"@type": "Person", "name": "Diego Quintana"},
+  "makesOffer": [
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Interior painting"}},
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Cabinet painting"}},
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Luxury vinyl plank flooring installation"}},
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Handyman services"}}
+  ],
+  "slogan": "Fresh paint. New floors. Done deal."
+}
+</script>
