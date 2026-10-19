@@ -1,4 +1,28 @@
-<title>Done Deal Painting & Floors</title>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Done Deal Painting &amp; Floors | Interior Painting &amp; LVP Flooring, Denver CO</title>
+<meta name="description" content="Veteran-owned interior painting and LVP flooring installation in Denver, Aurora, Lakewood, Littleton, Englewood, Centennial, Wheat Ridge and Arvada. Free estimates, same-day response. Call or text (720) 295-5617.">
+<!-- Canonical and og:url: change to the custom domain at DNS cutover -->
+<link rel="canonical" href="https://michaelpickens.github.io/donedeal-site/">
+<meta name="theme-color" content="#16305E">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Done Deal Painting &amp; Floors">
+<meta property="og:title" content="Done Deal Painting &amp; Floors | Denver, CO">
+<meta property="og:description" content="Veteran-owned interior painting and LVP flooring installation in Denver, Aurora, Lakewood, Littleton, Englewood, Centennial, Wheat Ridge and Arvada. Free estimates, same-day response. Call or text (720) 295-5617.">
+<meta property="og:url" content="https://michaelpickens.github.io/donedeal-site/">
+<meta property="og:image" content="https://michaelpickens.github.io/donedeal-site/hero.jpg">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="1200">
+<meta property="og:image:alt" content="Bedroom painted a deep terracotta red with new dark plank flooring by Done Deal">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700;800&display=swap">
 <style>
   :root{
@@ -9,6 +33,9 @@
     --body:'Barlow', 'Helvetica Neue', Arial, sans-serif;
   }
   *{box-sizing:border-box; margin:0}
+  [hidden]{display:none !important}
+  .skip{position:absolute; left:-999px; top:8px; background:var(--yellow); color:var(--ink); padding:8px 14px; border-radius:6px; font-weight:800; z-index:100}
+  .skip:focus{left:8px}
   html{scroll-behavior:smooth}
   body{
     font-family:var(--body); color:var(--ink); background:var(--paper);
@@ -206,6 +233,9 @@
   @media(max-width:760px){ footer .wrap{grid-template-columns:1fr} }
   @media(prefers-reduced-motion:reduce){ *{transition:none !important} html{scroll-behavior:auto} }
 </style>
+</head>
+<body>
+<a class="skip" href="#services">Skip to content</a>
 
 <header>
   <div class="wrap nav">
@@ -411,10 +441,12 @@
         </div>
       </div>
     </div>
-    <form onsubmit="event.preventDefault(); this.hidden=true; document.getElementById('thanks').hidden=false;">
+    <form id="estimate-form" action="https://formspree.io/f/FORMSPREE_FORM_ID" method="POST" novalidate>
+      <input type="hidden" name="_subject" value="New estimate request from donedeal site">
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute; left:-9999px" aria-hidden="true">
       <div class="frow">
         <label>Name <input id="f-name" name="name" autocomplete="name" required></label>
-        <label>Phone or email <input id="f-contact" name="contact" autocomplete="tel" required></label>
+        <label>Phone or email <input id="f-contact" name="contact" autocomplete="tel" required inputmode="text"></label>
       </div>
       <div class="frow">
         <label>What's the job?
@@ -428,10 +460,10 @@
         <label>Rooms or square footage <input id="f-size" name="size" placeholder="e.g. 2 bedrooms, ~600 sq ft"></label>
       </div>
       <label>Tell Diego about it <textarea id="f-msg" name="message" rows="4" placeholder="What's the room like now, and what do you want it to be?"></textarea></label>
-      <button class="btn" type="submit" style="justify-self:start">Request Free Estimate</button>
-      <p class="form-note">Mockup form. Will connect to email/text notifications at launch.</p>
+      <button class="btn" type="submit" id="f-submit" style="justify-self:start">Request Free Estimate</button>
+      <p class="form-note" id="f-status" aria-live="polite">Goes straight to Diego. No mailing list, no sales calls.</p>
     </form>
-    <p id="thanks" hidden style="font-weight:700; color:var(--navy); font-size:1.2rem">Thanks! Diego will get back to you the same day. <span style="color:var(--red)">(Demo only. No message was sent.)</span></p>
+    <p id="thanks" hidden style="font-weight:700; color:var(--navy); font-size:1.2rem">Thanks! Diego will get back to you the same day.<br><span style="font-weight:500; color:var(--steel); font-size:.95rem">In a hurry? Call or text <a href="tel:+17202955617" style="color:var(--red)">(720) 295-5617</a>.</span></p>
   </div>
 </section>
 
@@ -461,23 +493,75 @@
   <div class="wrap fine">© 2026 Done Deal · Diego Quintana · Denver, CO · Draft mockup for review; reviews are placeholders until live Google reviews are embedded.</div>
 </footer>
 
+<script>
+(function(){
+  var form = document.getElementById('estimate-form');
+  if (!form) return;
+  var status = document.getElementById('f-status');
+  var btn = document.getElementById('f-submit');
+  var thanks = document.getElementById('thanks');
+  var configured = form.action.indexOf('FORMSPREE_FORM_ID') === -1;
+
+  function mailtoFallback(data){
+    var body = 'Name: ' + (data.get('name')||'') + '\n' +
+               'Contact: ' + (data.get('contact')||'') + '\n' +
+               'Job: ' + (data.get('service')||'') + '\n' +
+               'Size: ' + (data.get('size')||'') + '\n\n' +
+               (data.get('message')||'');
+    window.location.href = 'mailto:donedealhandyman@outlook.com?subject=' +
+      encodeURIComponent('Estimate request from the website') + '&body=' + encodeURIComponent(body);
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (!form.reportValidity()) return;
+    var data = new FormData(form);
+    if (!configured) { mailtoFallback(data); form.hidden = true; thanks.hidden = false; return; }
+    btn.disabled = true; btn.textContent = 'Sending\u2026';
+    fetch(form.action, {method:'POST', body:data, headers:{'Accept':'application/json'}})
+      .then(function(r){ if (!r.ok) throw new Error(r.status); form.hidden = true; thanks.hidden = false; })
+      .catch(function(){
+        btn.disabled = false; btn.textContent = 'Request Free Estimate';
+        status.textContent = 'That did not go through. Call or text (720) 295-5617 and Diego will take it from there.';
+        status.style.color = 'var(--red)';
+      });
+  });
+})();
+</script>
+
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "HousePainter",
   "name": "Done Deal Painting & Floors",
-  "url": "https://www.donedealhandyman.com",
+  "url": "https://michaelpickens.github.io/donedeal-site/",
+  "image": "https://michaelpickens.github.io/donedeal-site/hero.jpg",
+  "logo": "https://michaelpickens.github.io/donedeal-site/icon-512.png",
+  "description": "Veteran-owned interior painting and luxury vinyl plank flooring installation serving the Denver metro.",
+  "priceRange": "$$",
   "email": "donedealhandyman@outlook.com",
   "telephone": "+1-720-295-5617",
-  "address": {"@type": "PostalAddress", "addressLocality": "Denver", "addressRegion": "CO"},
-  "areaServed": ["Denver CO", "Aurora CO", "Lakewood CO", "Littleton CO", "Englewood CO", "Centennial CO", "Wheat Ridge CO", "Arvada CO"],
+  "address": {"@type": "PostalAddress", "addressLocality": "Denver", "addressRegion": "CO", "addressCountry": "US"},
+  "areaServed": [
+    {"@type": "City", "name": "Denver", "containedInPlace": {"@type": "State", "name": "Colorado"}},
+    {"@type": "City", "name": "Aurora", "containedInPlace": {"@type": "State", "name": "Colorado"}},
+    {"@type": "City", "name": "Lakewood", "containedInPlace": {"@type": "State", "name": "Colorado"}},
+    {"@type": "City", "name": "Littleton", "containedInPlace": {"@type": "State", "name": "Colorado"}},
+    {"@type": "City", "name": "Englewood", "containedInPlace": {"@type": "State", "name": "Colorado"}},
+    {"@type": "City", "name": "Centennial", "containedInPlace": {"@type": "State", "name": "Colorado"}},
+    {"@type": "City", "name": "Wheat Ridge", "containedInPlace": {"@type": "State", "name": "Colorado"}},
+    {"@type": "City", "name": "Arvada", "containedInPlace": {"@type": "State", "name": "Colorado"}}
+  ],
   "founder": {"@type": "Person", "name": "Diego Quintana"},
   "openingHoursSpecification": {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "17:00"},
   "makesOffer": [
     {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Interior painting"}},
     {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Cabinet painting"}},
-    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Luxury vinyl plank flooring installation"}}
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Luxury vinyl plank flooring installation"}},
+    {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Laminate flooring installation"}}
   ],
   "slogan": "Fresh paint. New floors. Done deal."
 }
 </script>
+</body>
+</html>
