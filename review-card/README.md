@@ -6,8 +6,8 @@ Both point at the same Google review link.
 ## 1. Get the review link (once)
 
 In the Google Business Profile (business.google.com), open the profile,
-click **Ask for reviews**, and copy the short link. It looks like
-`https://g.page/r/XXXXXXXXXXXX/review`. Paste it into the text template
+click **Ask for reviews**, and copy the short link. It is
+`https://g.page/r/CXvAH1JnakhlEAE/review`. Paste it into the text template
 below and run the card script with it.
 
 ## 2. Review request text
@@ -20,19 +20,19 @@ fresh. One text, no follow-up chasing. Replace the two bracketed bits.
 > Hey [first name], thanks again for having me out. Really happy with how the
 > [room / floors / cabinets] turned out. If you've got 60 seconds, a quick
 > Google review goes a long way for a one-man shop like mine:
-> [review link]
-> Diego, Done Deal Painting & Floors
+> https://g.page/r/CXvAH1JnakhlEAE/review
+> Diego, Done Deal Painting & Flooring
 
 **Shorter, for repeat or referral customers**
 
 > [First name], thanks again. If you're happy with the work, a Google review
-> would mean a lot: [review link]
+> would mean a lot: https://g.page/r/CXvAH1JnakhlEAE/review
 > Diego
 
 **If a few days go by and nothing posts (send once, then let it go)**
 
 > Hey [first name], no pressure at all, just making sure the link came
-> through: [review link]. Thanks for the work either way.
+> through: https://g.page/r/CXvAH1JnakhlEAE/review. Thanks for the work either way.
 
 Tips that matter more than the wording:
 
@@ -56,8 +56,8 @@ To regenerate with the real link (or after any copy change):
 
 ```
 pip install reportlab qrcode pillow
-python3 make_card.py "https://g.page/r/XXXXXXXXXXXX/review"
+python3 make_card.py "https://g.page/r/CXvAH1JnakhlEAE/review"
 ```
 
-The file in this folder was built with a placeholder link. Do not print it
-until it has been rebuilt with the real one.
+The PDF in this folder was built with the real link on 2026-11-03 and is
+ready to print.

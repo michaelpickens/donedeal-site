@@ -71,7 +71,7 @@ def wordmark(c, x, y, main_size, sub_color, main_color):
     c.drawString(x, y, "DONE DEAL")
     c.setFillColor(sub_color)
     c.setFont("Barlow-Bold", main_size * 0.42)
-    c.drawString(x, y - main_size * 0.5, "PAINTING & FLOORS")
+    c.drawString(x, y - main_size * 0.5, "PAINTING & FLOORING")
 
 
 def front(c):
