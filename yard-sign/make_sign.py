@@ -93,7 +93,7 @@ def face(c, headline_lines, sub_line, bottom_line):
     gap = 0.28 * inch
     wm_w = c.stringWidth("DONE DEAL", "Anton", wm)
     x0 = (PAGE_W - (badge + gap + wm_w)) / 2
-    by0 = top - SAFE - 0.05 * inch - badge
+    by0 = top - SAFE - 0.75 * inch - badge
     c.setFillColor(YELLOW)
     c.roundRect(x0, by0, badge, badge, 0.16 * inch, stroke=0, fill=1)
     check_mark(c, x0, by0, badge, NAVY)
@@ -150,7 +150,7 @@ def face_a(c):
 
 
 def face_b(c):
-    face(c, ["INTERIOR PAINTING", "& NEW FLOORS"],
+    face(c, ["INTERIOR PAINTING", "& FLOORING"],
          "LVP  ·  LAMINATE  ·  HARDWOOD  ·  CABINETS  ·  WALLS & TRIM",
          "FREE ESTIMATES  ·  VETERAN-OWNED")
 
