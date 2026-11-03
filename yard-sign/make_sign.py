@@ -25,6 +25,7 @@ FONTS = os.path.join(HERE, "..", "review-card", "fonts")
 OUT = os.path.join(HERE, "yard-sign.pdf")
 
 SITE_URL = "https://www.donedealhandyman.com/"
+GBP_URL = "https://g.page/r/CXvAH1JnakhlEAE"
 PHONE = "(720) 295-5617"
 
 NAVY, NAVY_DEEP, YELLOW, RED, PAPER, INK = (
@@ -80,7 +81,7 @@ def centered(c, text, y, font, size, color, x=None):
     c.drawCentredString(PAGE_W / 2 if x is None else x, y, text)
 
 
-def face(c, headline_lines, sub_line, bottom_line):
+def face(c, headline_lines, sub_line, bottom_line, qr_url, qr_label):
     top = PAGE_H  # measure from the top edge of the page
     c.setFillColor(NAVY)
     c.rect(0, 0, PAGE_W, PAGE_H, stroke=0, fill=1)
@@ -132,9 +133,9 @@ def face(c, headline_lines, sub_line, bottom_line):
     c.setFillColor("white")
     c.roundRect(qx, qy, qr_box, qr_box, 0.14 * inch, stroke=0, fill=1)
     pad = 0.15 * inch
-    c.drawImage(qr_image(SITE_URL, NAVY_DEEP, "white"), qx + pad, qy + pad,
+    c.drawImage(qr_image(qr_url, NAVY_DEEP, "white"), qx + pad, qy + pad,
                 qr_box - 2 * pad, qr_box - 2 * pad)
-    centered(c, "SCAN FOR A QUOTE", qy - 0.42 * inch, "Barlow-Bold", 0.26 * inch, "white",
+    centered(c, qr_label, qy - 0.42 * inch, "Barlow-Bold", 0.26 * inch, "white",
              x=qx + qr_box / 2)
 
     # bottom line, centered in the space left of the QR
@@ -146,13 +147,15 @@ def face(c, headline_lines, sub_line, bottom_line):
 def face_a(c):
     face(c, ["FRESH PAINT.", "NEW FLOORS."],
          "HAPPENING RIGHT HERE",
-         "FREE ESTIMATES  ·  VETERAN-OWNED")
+         "FREE ESTIMATES  ·  VETERAN-OWNED",
+         GBP_URL, "SCAN FOR REVIEWS")
 
 
 def face_b(c):
     face(c, ["INTERIOR PAINTING", "& FLOORING"],
          "LVP  ·  LAMINATE  ·  HARDWOOD  ·  CABINETS  ·  WALLS & TRIM",
-         "FREE ESTIMATES  ·  VETERAN-OWNED")
+         "FREE ESTIMATES  ·  VETERAN-OWNED",
+         SITE_URL, "SCAN FOR A QUOTE")
 
 
 c = canvas.Canvas(OUT, pagesize=(PAGE_W, PAGE_H))

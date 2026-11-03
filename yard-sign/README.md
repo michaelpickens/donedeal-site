@@ -2,7 +2,8 @@
 
 Two-sided 24 x 18 in coroplast yard sign with H-stake. Face A goes up at every
 active job site ("happening right here"); Face B is the roadside version. Both
-carry the phone, the wordmark, and a QR to donedealhandyman.com.
+carry the phone and wordmark. Face A's QR opens the Google listing (reviews);
+Face B's opens donedealhandyman.com.
 
 `yard-sign.pdf` is two pages with 0.125 in bleed on every edge (page size
 24.25 x 18.25 in). Order as double-sided, 4mm coroplast, "I have my own bleed",
